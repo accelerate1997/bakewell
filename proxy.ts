@@ -1,40 +1,12 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { rateLimit } from "./lib/rateLimit";
 
 export default withAuth(
   function middleware(req) {
-    // Extract real client IP behind reverse proxy (Traefik/Coolify)
-    const realIp = req.headers.get("x-real-ip");
-    const forwardedFor = req.headers.get("x-forwarded-for");
-    const ip = realIp || forwardedFor?.split(",")[0]?.trim() || "unknown";
-
     const token = req.nextauth.token;
     const pathname = req.nextUrl.pathname;
 
-    // Use user email + IP as rate limit key for better accuracy behind proxies
-    const rateLimitKey = token?.email ? `${token.email}` : ip;
-
-    // Higher limit for admin (many API calls per page), lower for checkout
-    const limit = pathname.startsWith("/api/admin") || pathname.startsWith("/admin") ? 200 : 100;
-    const { isRateLimited, remaining, resetTime } = rateLimit(rateLimitKey, limit);
-
-    if (isRateLimited) {
-      return new NextResponse(
-        JSON.stringify({ error: "Too many requests. Please try again later." }),
-        {
-          status: 429,
-          headers: {
-            "Content-Type": "application/json",
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": "0",
-            "X-RateLimit-Reset": resetTime.toString(),
-          },
-        }
-      );
-    }
-    
     const isDevBypass = process.env.NODE_ENV === "development" && req.headers.get("x-bypass-auth") === "true";
     const role = isDevBypass ? "ADMIN" : (token?.role as string)?.toUpperCase();
 
@@ -66,11 +38,7 @@ export default withAuth(
       }
     }
 
-    const response = NextResponse.next();
-    response.headers.set("X-RateLimit-Limit", limit.toString());
-    response.headers.set("X-RateLimit-Remaining", remaining.toString());
-    response.headers.set("X-RateLimit-Reset", resetTime.toString());
-    return response;
+    return NextResponse.next();
   },
   {
     callbacks: {
@@ -87,4 +55,3 @@ export default withAuth(
 export const config = {
   matcher: ["/admin/:path*", "/checkout/:path*", "/api/admin/((?!upload).*)"],
 };
-
