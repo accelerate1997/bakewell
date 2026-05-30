@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local editor config
+.vscode/
+
+# local scratch scripts and files
+scratch/
+scratch*.js
+*.log

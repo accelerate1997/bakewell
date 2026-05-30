@@ -1,0 +1,28 @@
+# Task List: Authentication & Role-Based Access Control
+
+- [x] Database Schema Refactoring
+  - [x] Define `UserRole` enum and update `User` model in `prisma/schema.prisma`
+  - [x] Update relations in `Order` and `Address` models
+  - [x] Remove `Customer` model
+  - [x] Run database migration (`npx prisma db push`)
+- [x] Install Dependencies & Helper Libraries
+  - [x] Ensure `bcryptjs` and `@types/bcryptjs` are available
+- [x] Update Authentication Configuration (`lib/auth.ts`)
+  - [x] Setup Credentials provider authorize logic using bcryptjs and database search
+  - [x] Update JWT and Session callbacks to store roles, phone, and user ID
+- [x] Implement Storefront Sign-up & Sign-in Pages
+  - [x] Create Sign-up API endpoint `app/api/auth/signup/route.ts` (with first-user ADMIN auto-promotion)
+  - [x] Create Sign-up UI page `app/(store)/signup/page.tsx`
+  - [x] Create Sign-in UI page `app/(store)/login/page.tsx`
+- [x] Implement Middleware Protection
+  - [x] Create root `middleware.ts` to protect `/admin/*` and `/checkout`
+- `[x]` Refactor Checkout & Payment APIs
+  - `[x]` Update `app/api/store/checkout/route.ts` to use active session and `User` model
+  - `[x]` Update `app/api/store/payment/verify/route.ts` to use active session and `User` model
+- `[x]` Refactor Admin Dashboard & Existing Pages
+  - `[x]` Update `app/(admin)/admin/customers/page.tsx` to read from unified `User` model
+  - `[x]` Create Admin User Management dashboard `app/(admin)/admin/users/page.tsx`
+  - `[x]` Create admin users API endpoints `app/api/admin/users/route.ts`
+- `[x]` Verification & Testing
+  - `[x]` Run TypeScript build verification (`npx tsc --noEmit`)
+  - [x] Manually test login/signup flows and role gates

@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Branding Colors */
+  --color-db-green: #3d5a2e;
+  --color-db-green-dark: #1a2c1a;
+  --color-db-green-light: #4d7a3e;
+  --color-db-amber: #c8872a;
+  --color-db-amber-light: #e8a845;
+  --color-db-bg: #f0f2e8;
+  --color-db-surface: #e8ead8;
+  --color-db-border: #d4d9b8;
+}
+
+:root {
+  --background: #f0f2e8;
+  --foreground: #4a4a4a;
+  --card: #ffffff;
+  --card-foreground: #4a4a4a;
+  --popover: #ffffff;
+  --popover-foreground: #4a4a4a;
+  --primary: #3d5a2e;
+  --primary-foreground: #ffffff;
+  --secondary: #e8ead8;
+  --secondary-foreground: #1a2c1a;
+  --muted: #e8ead8;
+  --muted-foreground: #8a8a7a;
+  --accent: #c8872a;
+  --accent-foreground: #ffffff;
+  --destructive: #A32D2D;
+  --destructive-foreground: #ffffff;
+  --border: #d4d9b8;
+  --input: #d4d9b8;
+  --ring: #3d5a2e;
+  --radius: 0.5rem;
+
+  --font-sans: var(--font-dm-sans);
+  --font-heading: var(--font-playfair);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-black uppercase tracking-tight text-[#1a2c1a];
+  }
+  label {
+    @apply font-bold uppercase tracking-widest text-xs;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#3d5a2e] text-white rounded-[4px] uppercase tracking-widest font-bold px-6 py-2 hover:bg-[#4d7a3e] transition-colors;
+  }
+  .card-db {
+    @apply bg-white border border-[#d4d9b8] rounded-[8px] shadow-none;
+  }
+  .sidebar-link-active {
+    @apply bg-[rgba(200,135,42,0.15)] border-l-[3px] border-[#c8872a] text-[#c8872a];
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@keyframes slide-up-from-bottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up-from-bottom {
+  animation: slide-up-from-bottom 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* ── Ingredient Icons ─────────────────────────────────── */
+
+@keyframes ingredientFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-ingredient-fade-up {
+  animation: ingredientFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ingredientFloat {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-10px); }
+}
+
+.animate-ingredient-float {
+  animation: ingredientFloat 3.4s ease-in-out infinite;
+}
+
+.ingredient-icon-wrap:hover .animate-ingredient-float {
+  filter: drop-shadow(0 0 14px rgba(220, 233, 204, 0.7));
+}
+
+/* ── Custom 404 Chef Sway & Float ─────────────────────── */
+
+@keyframes chefSwayFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(-0.4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(0.4deg);
+  }
+}
+
+.animate-chef-sway-float {
+  animation: chefSwayFloat 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Custom 505 Error Pulse & Float ─────────────────── */
+
+@keyframes errorPulseFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+  }
+  50% {
+    transform: translateY(-8px) scale(1.015);
+    filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.35));
+  }
+}
+
+.animate-error-pulse-float {
+  animation: errorPulseFloat 6s ease-in-out infinite;
+  will-change: transform, filter;
+}

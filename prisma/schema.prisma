@@ -1,0 +1,403 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+  CUSTOMER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  phone         String?   @unique
+  image         String?
+  password      String?
+  role          UserRole  @default(CUSTOMER)
+  accounts      Account[]
+  sessions      Session[]
+  addresses     Address[]
+  orders        Order[]
+  wishlist      WishlistItem[]
+  reviews       Review[]
+  subscriptions Subscription[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?   @db.Text
+  imageUrl    String?
+  products    Product[]
+  bulkEnquiries BulkEnquiryCategory[]
+}
+
+model Product {
+  id              String           @id @default(cuid())
+  name            String
+  slug            String           @unique
+  description     String?          @db.Text
+  categoryId      String
+  category        Category         @relation(fields: [categoryId], references: [id])
+  status          ProductStatus    @default(ACTIVE)
+  images          String[]
+  nutritionTags   String[]         // e.g. ["No Maida", "Vegan"]
+  metaTitle       String?
+  metaDescription String?
+  variants        ProductVariant[]
+  gstRate         Float            @default(5)
+  hsnCode         String?
+  packagingFee    Float            @default(0)
+  wishlistedBy    WishlistItem[]
+  reviews         Review[]
+  bulkEnquiries   BulkEnquiryProduct[]
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  @@index([categoryId])
+}
+
+model ProductVariant {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  label     String   // e.g. "400g", "800g"
+  price     Float
+  stock     Int      @default(0)
+  sku       String   @unique
+  orderItems OrderItem[]
+  subscriptionItems SubscriptionItem[]
+
+  @@index([productId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  UPI
+  CARD
+  COD
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullAddress String
+  isDefault   Boolean  @default(false)
+
+  @@index([userId])
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique // e.g. #ORD-1247
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  items           OrderItem[]
+  totalAmount     Float
+  deliveryCharge  Float         @default(0)
+  couponDiscount  Float         @default(0)
+  couponCode      String?
+  status          OrderStatus   @default(PENDING)
+  paymentMethod   PaymentMethod
+  paymentStatus   PaymentStatus @default(PENDING)
+  paymentId       String?       // Razorpay ID
+  trackingNumber  String?
+  notes           String?
+  deliveryDate    DateTime?
+  deliverySlotId  String?
+  deliverySlot    DeliverySlot? @relation(fields: [deliverySlotId], references: [id])
+  cgstAmount      Float         @default(0)
+  sgstAmount      Float         @default(0)
+  igstAmount      Float         @default(0)
+  totalTax        Float         @default(0)
+  packagingFee    Float         @default(0)
+  subscriptionDelivery SubscriptionDelivery?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([userId])
+  @@index([deliverySlotId])
+}
+
+model OrderItem {
+  id               String         @id @default(cuid())
+  orderId          String
+  order            Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId        String
+  variant          ProductVariant @relation(fields: [variantId], references: [id])
+  quantity         Int
+  unitPrice        Float
+  totalPrice       Float
+  gstRateApplied   Float          @default(0)
+  gstAmount        Float          @default(0)
+
+  @@index([orderId])
+  @@index([variantId])
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+model Coupon {
+  id             String     @id @default(cuid())
+  code           String     @unique
+  type           CouponType
+  value          Float
+  minOrderAmount Float      @default(0)
+  maxUses        Int?
+  usedCount      Int        @default(0)
+  perUserLimit   Int        @default(1)
+  expiryDate     DateTime?
+  isActive       Boolean    @default(true)
+  createdAt      DateTime   @default(now())
+}
+
+enum BannerPosition {
+  HERO
+  ANNOUNCEMENT
+  FEATURED
+}
+
+model Banner {
+  id        String         @id @default(cuid())
+  title     String
+  position  BannerPosition
+  imageUrl  String
+  linkUrl   String?
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+}
+
+model SystemSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ServiceablePincode {
+  id             String   @id @default(cuid())
+  pincode        String   @unique
+  city           String
+  state          String
+  deliveryDays   Int      @default(2)
+  deliveryCharge Float    @default(0)
+  codAvailable   Boolean  @default(true)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model DeliverySlot {
+  id          String   @id @default(cuid())
+  startTime   String   // e.g. "09:00"
+  endTime     String   // e.g. "12:00"
+  label       String   // e.g. "Morning (9 AM - 12 PM)"
+  isActive    Boolean  @default(true)
+  orders      Order[]
+  subscriptions Subscription[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([productId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  rating      Int      // 1 to 5 stars
+  title       String?  // Headline of the review
+  comment     String   @db.Text
+  isVerified  Boolean  @default(false)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, productId])
+  @@index([productId])
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+  EXPIRED
+}
+
+enum SubscriptionFrequency {
+  DAILY
+  ALTERNATING
+  WEEKLY
+  CUSTOM_DAYS
+}
+
+model Subscription {
+  id                     String                @id @default(cuid())
+  userId                 String
+  user                   User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status                 SubscriptionStatus    @default(ACTIVE)
+  frequency              SubscriptionFrequency
+  customDays             String[]              // e.g. ["MONDAY", "WEDNESDAY", "FRIDAY"]
+  deliverySlotId         String
+  deliverySlot           DeliverySlot          @relation(fields: [deliverySlotId], references: [id])
+  startDate              DateTime
+  endDate                DateTime?             // Null for open-ended
+  items                  SubscriptionItem[]
+  deliveries             SubscriptionDelivery[]
+  razorpaySubscriptionId String?               @unique
+  razorpayPlanId         String?
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+
+  @@index([userId])
+  @@index([deliverySlotId])
+}
+
+model SubscriptionItem {
+  id             String         @id @default(cuid())
+  subscriptionId String
+  subscription   Subscription   @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  variantId      String
+  variant        ProductVariant @relation(fields: [variantId], references: [id])
+  quantity       Int
+  pricePerUnit   Float          // Locked subscription price
+
+  @@index([subscriptionId])
+  @@index([variantId])
+}
+
+model SubscriptionDelivery {
+  id             String         @id @default(cuid())
+  subscriptionId String
+  subscription   Subscription   @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  deliveryDate   DateTime
+  orderId        String?        @unique // Linked generated order
+  order          Order?         @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  status         String         // e.g., "PENDING", "GENERATED", "SKIPPED"
+
+  @@index([subscriptionId])
+  @@index([orderId])
+}
+
+model BulkEnquiry {
+  id          String                 @id @default(cuid())
+  name        String
+  email       String?
+  phone       String
+  message     String?                @db.Text
+  quantity    Int?                   // Estimated bulk order quantity
+  status      String                 @default("PENDING") // PENDING, CONTACTED, RESOLVED
+  categories  BulkEnquiryCategory[]
+  products    BulkEnquiryProduct[]
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+}
+
+model BulkEnquiryCategory {
+  id          String      @id @default(cuid())
+  enquiryId   String
+  enquiry     BulkEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId])
+  @@index([categoryId])
+}
+
+model BulkEnquiryProduct {
+  id          String      @id @default(cuid())
+  enquiryId   String
+  enquiry     BulkEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId])
+  @@index([productId])
+}
+
