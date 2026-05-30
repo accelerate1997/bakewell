@@ -98,6 +98,7 @@ export function StoreHeader() {
     { name: "FMCG ESSENTIALS", href: "/category/fmcg-essentials" },
     { name: "SNACKS & COOKIES", href: "/category/snacks-cookies" },
     { name: "BULK ENQUIRY", href: "/bulk-enquiry" },
+    { name: "BLOG", href: "/blog" },
     { name: "OUR STORY", href: "/#story" },
   ];
 

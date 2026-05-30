@@ -15,6 +15,7 @@ const FOOTER_LINKS = {
     { name: "Our Story", href: "/#story" },
     { name: "Find Us", href: "/#story" },
     { name: "Bulk Enquiry", href: "/bulk-enquiry" },
+    { name: "Blog", href: "/blog" },
     { name: "Clean Label Promise", href: "/#story" }
   ],
   "OUR PRODUCTS": [

@@ -19,7 +19,9 @@ import {
   Star,
   BarChart3,
   Calendar,
-  Inbox
+  Inbox,
+  FileText,
+  Bookmark
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { playfair } from '@/lib/fonts';
@@ -33,6 +35,8 @@ const navLinks = [
   { href: '/admin/inventory', label: 'Inventory', icon: Boxes },
   { href: '/admin/customers', label: 'Customers', icon: Users },
   { href: '/admin/bulk-enquiries', label: 'Bulk Enquiries', icon: Inbox },
+  { href: '/admin/blog', label: 'Blog Posts', icon: FileText },
+  { href: '/admin/blog-categories', label: 'Blog Categories', icon: Bookmark },
   { href: '/admin/reviews', label: 'Reviews', icon: Star },
   { href: '/admin/reports', label: 'Reports', icon: BarChart3 },
   { href: '/admin/users', label: 'Users', icon: UserCog },
