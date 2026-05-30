@@ -5,12 +5,20 @@ import { rateLimit } from "./lib/rateLimit";
 
 export default withAuth(
   function middleware(req) {
+    // Extract real client IP behind reverse proxy (Traefik/Coolify)
+    const realIp = req.headers.get("x-real-ip");
     const forwardedFor = req.headers.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0]?.trim() || "127.0.0.1";
-    
-    // Default limit of 60 requests per minute for admin/checkout paths
-    const limit = 60;
-    const { isRateLimited, remaining, resetTime } = rateLimit(ip, limit);
+    const ip = realIp || forwardedFor?.split(",")[0]?.trim() || "unknown";
+
+    const token = req.nextauth.token;
+    const pathname = req.nextUrl.pathname;
+
+    // Use user email + IP as rate limit key for better accuracy behind proxies
+    const rateLimitKey = token?.email ? `${token.email}` : ip;
+
+    // Higher limit for admin (many API calls per page), lower for checkout
+    const limit = pathname.startsWith("/api/admin") || pathname.startsWith("/admin") ? 200 : 100;
+    const { isRateLimited, remaining, resetTime } = rateLimit(rateLimitKey, limit);
 
     if (isRateLimited) {
       return new NextResponse(
@@ -26,19 +34,13 @@ export default withAuth(
         }
       );
     }
-
-    const token = req.nextauth.token;
-    const pathname = req.nextUrl.pathname;
     
     const isDevBypass = process.env.NODE_ENV === "development" && req.headers.get("x-bypass-auth") === "true";
     const role = isDevBypass ? "ADMIN" : (token?.role as string)?.toUpperCase();
 
-    console.log(`[Middleware Debug] Path: ${pathname}, Role: ${role}, Token exists: ${!!token}, Bypass: ${isDevBypass}`);
-
     // Admin routes protection: must be ADMIN or STAFF
     if (pathname.startsWith("/admin")) {
       if (role !== "ADMIN" && role !== "STAFF") {
-        // Redirect to a 403 Forbidden page or home page with access denied warning
         return NextResponse.redirect(new URL("/?error=AccessDenied", req.url));
       }
 
@@ -72,7 +74,6 @@ export default withAuth(
   },
   {
     callbacks: {
-      // Allow passing through to the middleware function if token exists or in dev bypass
       authorized: ({ token, req }) => {
         if (process.env.NODE_ENV === "development" && (req as NextRequest).headers.get("x-bypass-auth") === "true") {
           return true;
