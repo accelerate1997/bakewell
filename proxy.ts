@@ -1,10 +1,12 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { rateLimit } from "./lib/rateLimit";
 
 export default withAuth(
   function middleware(req) {
-    const ip = req.ip || req.headers.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const ip = forwardedFor?.split(",")[0]?.trim() || "127.0.0.1";
     
     // Default limit of 60 requests per minute for admin/checkout paths
     const limit = 60;
@@ -72,7 +74,7 @@ export default withAuth(
     callbacks: {
       // Allow passing through to the middleware function if token exists or in dev bypass
       authorized: ({ token, req }) => {
-        if (process.env.NODE_ENV === "development" && req.headers.get("x-bypass-auth") === "true") {
+        if (process.env.NODE_ENV === "development" && (req as NextRequest).headers.get("x-bypass-auth") === "true") {
           return true;
         }
         return !!token;
