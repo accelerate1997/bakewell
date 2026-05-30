@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/store/ProductCard";
 import { Prisma } from "@prisma/client";
 import { SlidersHorizontal, X } from "lucide-react";
 
-export const revalidate = 30;
+export const dynamic = "force-dynamic";
 
 export default async function ProductsPage({
   searchParams,

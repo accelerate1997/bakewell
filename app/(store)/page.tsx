@@ -8,7 +8,7 @@ import { ArrowRight, Star, ShieldCheck, Clock, Truck } from "lucide-react";
 import { BreadProcess } from "@/components/store/BreadProcess";
 import { HeroImage } from "@/components/store/HeroImage";
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = "force-dynamic";
 
 const INGREDIENTS = [
   { label: '100% Whole Wheat',          icon: '/ingredient-1.svg' },

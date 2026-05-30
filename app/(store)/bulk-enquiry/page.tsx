@@ -3,7 +3,7 @@ import BulkEnquiryForm from "@/components/store/BulkEnquiryForm";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const revalidate = 300; // Cache for 5 minutes
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Bulk Purchase Enquiry | The Daily Bake",
