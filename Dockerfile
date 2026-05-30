@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Install dependencies based on package-lock.json
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 # Stage 2: Rebuild the source code
 FROM node:20-alpine AS builder
