@@ -4,9 +4,10 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/store/ProductCard";
 import { CategorySlider } from "@/components/store/CategorySlider";
-import { ArrowRight, Star, ShieldCheck, Clock, Truck } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck, Clock, Truck, Calendar, User, BookOpen } from "lucide-react";
 import { BreadProcess } from "@/components/store/BreadProcess";
 import { HeroImage } from "@/components/store/HeroImage";
+import { format } from "date-fns";
 
 export const dynamic = "force-dynamic";
 
@@ -21,14 +22,22 @@ const INGREDIENTS = [
 const ONLINE_PARTNERS = ['Swiggy Instamart', 'Blinkit', 'Zepto', 'BigBasket'];
 const OFFLINE_PARTNERS = ["Nature's Basket", 'Star Bazaar', 'Reliance Smart', '7-Eleven'];
 
-const RECIPES = [
-  { name: "Dessert", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1000&auto=format&fit=crop" },
-  { name: "Burger", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop" },
-  { name: "Pizza", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" },
-  { name: "Sandwich", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1000&auto=format&fit=crop" }
-];
+
 
 export default async function StoreHomePage() {
+  // Fetch latest 3 published blog posts
+  const latestPosts = await prisma.blogPost.findMany({
+    where: { isPublished: true },
+    include: {
+      category: true,
+      author: {
+        select: { name: true }
+      }
+    },
+    orderBy: { publishedAt: "desc" },
+    take: 3
+  });
+
   // Fetch active Hero Banners
   const banners = await prisma.banner.findMany({
     where: {
@@ -172,23 +181,88 @@ export default async function StoreHomePage() {
       {/* Breadmaking Process Section */}
       <BreadProcess />
 
-      {/* Recipes */}
-      <section id="story" className="py-12" style={{ backgroundColor: '#F0F5EA' }}>
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-4xl font-extrabold uppercase mb-6" style={{ color: '#3A4A2E' }}>
-            Flavour-First, Healthy Recipes.
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {RECIPES.map((recipe) => (
-              <div key={recipe.name} className="group cursor-pointer relative overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all">
-                <div className="aspect-[4/3] relative" style={{ backgroundColor: '#DCE9CC' }}>
-                  <Image src={recipe.img} alt={recipe.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+
+
+      {/* Stories From Our Oven (Blog Section) */}
+      <section className="py-20 border-t border-[#2E3B25]/10" style={{ backgroundColor: '#F0F5EA' }}>
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div className="space-y-3 text-left">
+              <span className="inline-block bg-[#3d5a2e]/10 text-[#3d5a2e] text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-[#3d5a2e]/20">
+                Freshly Written
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold uppercase leading-none text-[#3A4A2E]">
+                Stories From Our Oven
+              </h2>
+              <p className="text-sm font-semibold uppercase tracking-wider text-[#8a8a7a]">
+                Baking science, sourdough secrets, and wholesome recipes from our kitchen
+              </p>
+            </div>
+            <Link href="/blog" className="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#3d5a2e] hover:text-[#1a2c1a] transition-colors group">
+              Read All Stories
+              <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {latestPosts.map((post) => {
+              const publishedDate = post.publishedAt ? new Date(post.publishedAt) : new Date(post.createdAt);
+              return (
+                <div key={post.id} className="bg-white rounded-2xl border border-[#d4d9b8] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                  <div className="relative h-56 bg-[#e8ead8] overflow-hidden">
+                    {post.coverImage ? (
+                      <Image
+                        src={post.coverImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-[#8a8a7a]">
+                        <BookOpen className="w-12 h-12 opacity-35" />
+                      </div>
+                    )}
+                    {post.category && (
+                      <div className="absolute top-4 left-4 z-10">
+                        <span className="bg-[#3d5a2e] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded shadow-sm">
+                          {post.category.name}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-2 text-left">
+                      <h3 className="font-playfair font-black text-lg text-[#1a2c1a] uppercase tracking-tight leading-snug line-clamp-2 group-hover:text-[#3d5a2e] transition-colors">
+                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                      </h3>
+                      <p className="text-xs text-[#8a8a7a] line-clamp-2 leading-relaxed">
+                        {post.excerpt || "Read about our baking processes, sourdough guides, and delicious kitchen stories."}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-[#f0f2e8] flex items-center justify-between text-[11px] text-[#8a8a7a] font-bold uppercase tracking-wider">
+                      <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1">
+                          <User size={12} className="text-[#3d5a2e]" />
+                          {post.author?.name || "Daily Bake"}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar size={12} className="text-[#c8872a]" />
+                          {format(publishedDate, "dd MMM")}
+                        </span>
+                      </div>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="text-[10px] font-black text-[#3d5a2e] hover:text-[#1a2c1a] flex items-center gap-1 group-hover:underline"
+                      >
+                        Read <ArrowRight size={12} />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white font-bold text-base tracking-wider uppercase">{recipe.name}</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

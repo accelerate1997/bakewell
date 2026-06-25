@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { StoreHeader } from "@/components/store/StoreHeader";
 import { StoreFooter } from "@/components/store/StoreFooter";
 import { CartDrawer } from "@/components/store/CartDrawer";
+import { CookieConsent } from "@/components/store/CookieConsent";
 import { CartProvider } from "@/lib/store/CartContext";
 import { WishlistProvider } from "@/lib/store/WishlistContext";
 import { Metadata } from "next";
@@ -28,6 +29,7 @@ export default function StoreLayout({
           </main>
           <StoreFooter />
           <CartDrawer />
+          <CookieConsent />
         </div>
       </WishlistProvider>
     </CartProvider>
