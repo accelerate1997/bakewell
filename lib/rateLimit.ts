@@ -9,7 +9,8 @@ if (typeof setInterval !== "undefined") {
   setInterval(() => {
     const now = Date.now();
     for (const [key, record] of memoryStore.entries()) {
-      const validTimestamps = record.timestamps.filter((t) => now - t < 60000);
+      // Keep timestamps up to 10 minutes (600,000ms), which is the maximum window size used in signup
+      const validTimestamps = record.timestamps.filter((t) => now - t < 600000);
       if (validTimestamps.length === 0) {
         memoryStore.delete(key);
       } else {
@@ -19,13 +20,14 @@ if (typeof setInterval !== "undefined") {
   }, 60000);
 }
 
-export function rateLimit(ip: string, limit = 60, windowMs = 60000) {
+export function rateLimit(ip: string, limit = 60, windowMs = 60000, prefix = "") {
   const now = Date.now();
-  let record = memoryStore.get(ip);
+  const key = prefix ? `${prefix}:${ip}` : ip;
+  let record = memoryStore.get(key);
 
   if (!record) {
     record = { timestamps: [] };
-    memoryStore.set(ip, record);
+    memoryStore.set(key, record);
   }
 
   // Keep only timestamps within the sliding window

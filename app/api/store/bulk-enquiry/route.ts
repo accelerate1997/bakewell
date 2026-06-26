@@ -1,8 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { rateLimit } from "@/lib/rateLimit";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
+    const { isRateLimited } = rateLimit(ip, 5, 300000, "bulk-enquiry"); // 5 submissions per 5 minutes
+    if (isRateLimited) {
+      return NextResponse.json(
+        { error: "Too many enquiry submissions. Please try again after 5 minutes." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const { name, phone, email, message, quantity, categoryIds, productIds } = body;
 

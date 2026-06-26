@@ -1,10 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+import { rateLimit } from "@/lib/rateLimit";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
+    const { isRateLimited } = rateLimit(ip, 15, 60000, "validate-coupon"); // 15 requests per minute
+    if (isRateLimited) {
+      return NextResponse.json(
+        { error: "Too many validation attempts. Please try again after 1 minute." },
+        { status: 429 }
+      );
+    }
+
     const { code, subtotal } = await request.json();
 
     if (!code) {
