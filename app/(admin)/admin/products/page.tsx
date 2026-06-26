@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/select';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 export default function ProductsPage() {
   const router = useRouter();
@@ -40,6 +41,26 @@ export default function ProductsPage() {
       setLoading(false);
     });
   }, []);
+
+  const handleDeleteProduct = async (id: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+
+    try {
+      const res = await fetch(`/api/admin/products/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        toast.success(`Product "${name}" deleted successfully`);
+        setProducts((prev) => prev.filter((p) => p.id !== id));
+      } else {
+        const data = await res.json();
+        toast.error(data.error || 'Failed to delete product');
+      }
+    } catch (error) {
+      toast.error('Error deleting product');
+    }
+  };
 
   const filteredProducts = products
     .filter((p: any) => {
@@ -255,7 +276,12 @@ export default function ProductsPage() {
                             <Pencil size={14} />
                           </Button>
                         </Link>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-[#A32D2D] hover:bg-[#FCEBEB]">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8 text-[#A32D2D] hover:bg-[#FCEBEB]"
+                          onClick={() => handleDeleteProduct(product.id, product.name)}
+                        >
                           <Trash2 size={14} />
                         </Button>
                         <Link href={`/product/${product.slug}`} target="_blank">
