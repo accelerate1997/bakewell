@@ -24,7 +24,7 @@ export function AdminTopBar() {
   };
 
   return (
-    <div className="h-16 bg-white border-b border-[#d4d9b8] fixed top-0 left-0 md:left-[240px] right-0 flex items-center justify-between px-4 md:px-8 z-40">
+    <div className="h-16 bg-white border-b border-[#d4d9b8] fixed top-0 left-0 md:left-[240px] right-0 flex items-center justify-between px-4 md:px-8 z-40 print:hidden">
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger render={

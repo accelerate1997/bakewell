@@ -49,6 +49,20 @@ export default function AdminReportsPage() {
   // Active Tab
   const [activeTab, setActiveTab] = useState<string>("overview");
 
+  // Track printing state so all tab sections render during print
+  const [isPrinting, setIsPrinting] = useState(false);
+
+  useEffect(() => {
+    const handleBeforePrint = () => setIsPrinting(true);
+    const handleAfterPrint = () => setIsPrinting(false);
+    window.addEventListener("beforeprint", handleBeforePrint);
+    window.addEventListener("afterprint", handleAfterPrint);
+    return () => {
+      window.removeEventListener("beforeprint", handleBeforePrint);
+      window.removeEventListener("afterprint", handleAfterPrint);
+    };
+  }, []);
+
   // Search filter for products/ledger
   const [productSearch, setProductSearch] = useState("");
   const [ledgerSearch, setLedgerSearch] = useState("");
@@ -248,40 +262,59 @@ export default function AdminReportsPage() {
       {/* CSS Override for Printing */}
       <style jsx global>{`
         @media print {
+          @page {
+            size: A4 landscape;
+            margin: 12mm 10mm;
+          }
           body {
             background-color: white !important;
             color: black !important;
-            font-size: 11px !important;
+            font-size: 10px !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
           }
-          nav, sidebar, header, .no-print, button, input, select, .no-print-layout {
+          /* Hide sidebar, topbar, and all interactive UI */
+          .no-print,
+          [class*="AdminSidebar"],
+          [class*="AdminTopBar"] {
             display: none !important;
           }
-          .print-full-width {
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
+          /* Remove left offset from content wrapper */
+          [class*="md:pl-"] {
+            padding-left: 0 !important;
+          }
+          /* Remove top padding from main */
+          main {
+            padding-top: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
           }
           .card {
-            border: 1px solid #ddd !important;
+            border: 1px solid #ccc !important;
             box-shadow: none !important;
             background: white !important;
+            break-inside: avoid;
             page-break-inside: avoid;
           }
           table {
             width: 100% !important;
             border-collapse: collapse !important;
+            white-space: normal !important;
           }
           th, td {
-            border: 1px solid #ddd !important;
-            padding: 4px 6px !important;
+            border: 1px solid #ccc !important;
+            padding: 3px 5px !important;
+            font-size: 9px !important;
+            white-space: normal !important;
+            word-break: break-word;
           }
-          thead {
-            background-color: #f5f5f5 !important;
+          thead tr {
+            background-color: #e8ede0 !important;
             color: black !important;
+          }
+          /* Keep alternating row colors */
+          tbody tr:nth-child(even) {
+            background-color: #f9faf6 !important;
           }
         }
       `}</style>
@@ -479,7 +512,7 @@ export default function AdminReportsPage() {
       </div>
 
       {/* TAB 1: OVERVIEW & CHARTS */}
-      {(activeTab === "overview" || typeof window !== "undefined" && window.matchMedia && window.matchMedia("print").matches) && (
+      {(activeTab === "overview" || isPrinting) && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Sales Trend Chart */}
@@ -599,7 +632,7 @@ export default function AdminReportsPage() {
       )}
 
       {/* TAB 2: PRODUCT & CATEGORY SALES */}
-      {(activeTab === "products" || typeof window !== "undefined" && window.matchMedia && window.matchMedia("print").matches) && (
+      {(activeTab === "products" || isPrinting) && (
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Products Breakdown Table */}
           <Card className="p-6 border-[#d4d9b8] rounded-[8px] shadow-none bg-white lg:col-span-3 card">
@@ -690,7 +723,7 @@ export default function AdminReportsPage() {
       )}
 
       {/* TAB 3: GST TAX LEDGER */}
-      {(activeTab === "gst" || typeof window !== "undefined" && window.matchMedia && window.matchMedia("print").matches) && (
+      {(activeTab === "gst" || isPrinting) && (
         <Card className="p-6 border-[#d4d9b8] rounded-[8px] shadow-none bg-white card">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
@@ -716,7 +749,7 @@ export default function AdminReportsPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left whitespace-nowrap">
+            <table className="w-full text-left whitespace-nowrap print:whitespace-normal">
               <thead className="bg-[#1a2c1a] text-white text-[9px] uppercase tracking-widest font-black">
                 <tr>
                   <th className="px-3 py-2.5 font-bold">Date</th>
@@ -763,7 +796,7 @@ export default function AdminReportsPage() {
       )}
 
       {/* TAB 4: PAYMENT SUMMARY */}
-      {(activeTab === "payments" || typeof window !== "undefined" && window.matchMedia && window.matchMedia("print").matches) && (
+      {(activeTab === "payments" || isPrinting) && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Payment Methods Table */}
           <Card className="p-6 border-[#d4d9b8] rounded-[8px] shadow-none bg-white lg:col-span-1 card">
