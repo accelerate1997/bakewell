@@ -133,39 +133,42 @@ export default function AdminReportsPage() {
 
   // CSV Exporter
   const exportToCSV = (filename: string, dataset: any[], headers: string[], keyMap: string[]) => {
-    let csvContent = "data:text/csv;charset=utf-8,";
-    
     // Add header row
-    csvContent += headers.join(",") + "\r\n";
-    
+    let csvRows: string[] = [headers.join(",")];
+
     // Add data rows
     dataset.forEach((row) => {
       const rowData = keyMap.map(key => {
         let val = row[key];
         // Handle dates
-        if (key === "date" && typeof val === "string") {
+        if (key === "date" && val) {
           val = new Date(val).toLocaleDateString("en-IN");
         }
         // Handle object nests (e.g. category)
         if (typeof val === "object" && val !== null) {
           val = JSON.stringify(val);
         }
-        // Escape commas
-        if (typeof val === "string" && val.includes(",")) {
+        // Wrap in quotes if value contains comma, newline, or double-quote
+        if (typeof val === "string" && (val.includes(",") || val.includes('"') || val.includes("\n"))) {
           return `"${val.replace(/"/g, '""')}"`;
         }
         return val !== undefined && val !== null ? val : "";
       });
-      csvContent += rowData.join(",") + "\r\n";
+      csvRows.push(rowData.join(","));
     });
 
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = csvRows.join("\r\n");
+
+    // Use Blob to avoid encodeURI size limits which truncate large reports
+    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href", url);
     link.setAttribute("download", `${filename}_${startDate}_to_${endDate}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   // CSV exports handlers
