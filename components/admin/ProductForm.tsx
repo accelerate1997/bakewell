@@ -156,7 +156,12 @@ export function ProductForm({ initialData }: { initialData?: any }) {
         throw new Error(errData.error || 'Failed to save product');
       }
 
-      toast.success(initialData ? 'Product updated successfully!' : 'Product published successfully!');
+      const isDraft = !data.status;
+      if (isDraft) {
+        toast.success(initialData ? 'Product draft updated successfully!' : 'Product saved as draft!');
+      } else {
+        toast.success(initialData ? 'Product updated successfully!' : 'Product published successfully!');
+      }
       router.push('/admin/products');
       router.refresh();
     } catch (error: any) {
@@ -469,15 +474,51 @@ export function ProductForm({ initialData }: { initialData?: any }) {
       {/* Action Bar */}
       <div className="fixed bottom-0 left-0 md:left-[240px] right-0 h-20 bg-white border-t border-[#d4d9b8] px-4 md:px-8 flex items-center justify-between z-50">
         <div className="flex gap-3">
-          <Button type="button" variant="outline" className="border-[#d4d9b8] uppercase text-xs font-bold tracking-widest px-6">
+          <Button 
+            type="button" 
+            variant="outline" 
+            className="border-[#d4d9b8] uppercase text-xs font-bold tracking-widest px-6"
+            onClick={() => router.push('/admin/products')}
+            disabled={form.formState.isSubmitting}
+          >
             Cancel
           </Button>
-          <Button type="button" variant="outline" className="border-[#d4d9b8] uppercase text-xs font-bold tracking-widest px-6">
-            Save as Draft
+          <Button 
+            type="button" 
+            variant="outline" 
+            className="border-[#d4d9b8] uppercase text-xs font-bold tracking-widest px-6 animate-pulse-subtle"
+            onClick={async () => {
+              form.setValue('status', false);
+              await form.handleSubmit(onSubmit)();
+            }}
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting && !form.getValues('status') ? (
+              <>
+                <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              'Save as Draft'
+            )}
           </Button>
         </div>
-        <Button type="submit" className="btn-primary px-10">
-          Publish Product
+        <Button 
+          type="submit" 
+          className="btn-primary px-10"
+          onClick={() => {
+            form.setValue('status', true);
+          }}
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting && form.getValues('status') ? (
+            <>
+              <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" />
+              Publishing...
+            </>
+          ) : (
+            'Publish Product'
+          )}
         </Button>
       </div>
     </form>
