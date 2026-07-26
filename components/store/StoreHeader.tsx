@@ -131,8 +131,8 @@ export function StoreHeader() {
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="flex items-center font-bold text-xl md:text-2xl tracking-tight" style={{ color: '#231F14' }}>
-              <span>THE </span><span className="mx-1" style={{ color: '#3A4A2E' }}>DAILY BAKE</span><span>™</span>
+            <Link href="/" className="flex items-center">
+              <img src="/logo.svg" alt="Bakewell Logo" className="h-10 w-auto object-contain" />
             </Link>
           </div>
 

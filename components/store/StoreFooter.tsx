@@ -50,9 +50,7 @@ export function StoreFooter() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-16 mb-16" style={{ borderTop: '1px solid rgba(240,245,234,0.2)' }}>
           <div className="col-span-2 lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
-              <span className="font-bold text-3xl tracking-tight flex items-center mb-2">
-                <span>THE </span><span className="mx-1" style={{ color: '#DCE9CC' }}>DAILY BAKE</span><span>™</span>
-              </span>
+              <img src="/logo.svg" alt="Bakewell Logo" className="h-12 w-auto object-contain mb-2 brightness-0 invert" />
             </Link>
             <p className="text-sm max-w-xs leading-relaxed" style={{ color: 'rgba(240,245,234,0.7)' }}>
               Love The Daily Bake breads? Get healthy, hustle-friendly recipes straight to your inbox.
