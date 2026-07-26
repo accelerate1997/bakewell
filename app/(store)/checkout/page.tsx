@@ -40,6 +40,7 @@ export default function CheckoutPage() {
   const [city, setCity] = useState("");
   const [pincode, setPincode] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"UPI" | "CARD" | "COD" | "STRIPE">("COD");
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<{
@@ -1130,6 +1131,47 @@ export default function CheckoutPage() {
 
           {/* Place Order Button */}
           <div className="pt-6 border-t border-[#f0f2e8]">
+            {/* Consent Box */}
+            <div className="flex items-start gap-2.5 mb-5 select-none">
+              <input
+                id="agree-to-policies"
+                type="checkbox"
+                checked={agreeToTerms}
+                onChange={(e) => setAgreeToTerms(e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-[#d4d9b8] text-[#3d5a2e] focus:ring-[#3d5a2e] accent-[#3d5a2e] cursor-pointer"
+              />
+              <Label
+                htmlFor="agree-to-policies"
+                className="text-[11px] text-[#4a4a4a] leading-tight font-medium cursor-pointer"
+              >
+                I agree to the{" "}
+                <Link
+                  href="/terms-and-conditions"
+                  target="_blank"
+                  className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+                >
+                  Terms &amp; Conditions
+                </Link>
+                ,{" "}
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                , and{" "}
+                <Link
+                  href="/refund-policy"
+                  target="_blank"
+                  className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+                >
+                  Refund Policy
+                </Link>
+                .
+              </Label>
+            </div>
+
             <Button
               type="submit"
               disabled={
@@ -1138,7 +1180,8 @@ export default function CheckoutPage() {
                 pincode.length !== 6 ||
                 (pincodeResult !== null && !pincodeResult.serviceable) ||
                 !selectedDate ||
-                (availableSlots.length > 0 && !selectedSlotId)
+                (availableSlots.length > 0 && !selectedSlotId) ||
+                !agreeToTerms
               }
               className={`w-full ${
                 isSubscriptionCheckout 
@@ -1167,7 +1210,7 @@ export default function CheckoutPage() {
             <p className="text-[10px] text-center text-[#8a8a7a] mt-3 uppercase tracking-wider">
               {isSubscriptionCheckout 
                 ? "By creating this subscription, recurring delivery invoices will be auto-generated." 
-                : "By placing your order, you agree to The Daily Bake™ terms of service and privacy policy."}
+                : "By placing your order, you agree to The Daily Bake™ terms of service, privacy policy, and refund policy."}
             </p>
           </div>
         </div>

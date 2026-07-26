@@ -40,90 +40,147 @@ export default function PrivacyPolicyPage() {
 
           <div className="space-y-8 text-sm text-[#4a4a4a] leading-relaxed">
             <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                1. Introduction
-              </h2>
               <p>
-                Welcome to <strong>The Daily Bake™</strong>. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy policy or our practices regarding your personal info, please contact us at info@thedailybake.com.
+                At <strong>Bakewell™</strong>, we value your trust and are committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use it, and the choices you have regarding your data when you visit or make a purchase on <a href="https://www.bakewell.in" target="_blank" rel="noopener noreferrer" className="text-[#3d5a2e] font-semibold hover:underline">www.bakewell.in</a> (&quot;the Website&quot;).
               </p>
               <p>
-                When you visit our website and use our services (browsing loaves, placing orders, subscribing to daily deliveries, or registering accounts), you trust us with your personal information. We take your privacy very seriously.
+                By using our Website, you agree to the practices described in this Privacy Policy.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                2. Information We Collect
+                1. Information We Collect
               </h2>
               <p>
-                We collect personal information that you voluntarily provide to us when registering on the Website, expressing an interest in obtaining information about us or our products, or placing orders.
+                When you interact with our Website, we may collect the following types of information:
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong>Personal Data Provided by You:</strong> Names, phone numbers, email addresses, billing addresses, delivery slots, and shipping addresses.
+                  <strong>Personal Details:</strong> Name, email address, phone number, and delivery address.
                 </li>
                 <li>
-                  <strong>Payment Credentials:</strong> All payments are processed securely through verified third-party gateways (e.g. UPI, Card processors). We do not store raw card numbers or UPI PINs on our servers.
+                  <strong>Payment Information:</strong> Payment details are processed securely through our third-party payment gateway partners; Bakewell does not store your full card or banking details on our servers.
                 </li>
                 <li>
-                  <strong>Device Data & Cookies:</strong> We collect IP addresses, browser specifications, operating systems, and website interaction stats.
+                  <strong>Order Information:</strong> Products purchased, order history, delivery preferences, and special instructions (e.g., cake messages, delivery timing).
+                </li>
+                <li>
+                  <strong>Account Information:</strong> Login credentials, if you choose to create an account with us.
+                </li>
+                <li>
+                  <strong>Technical Information:</strong> IP address, browser type, device information, and browsing behaviour on our Website, collected automatically through cookies and similar technologies.
+                </li>
+                <li>
+                  <strong>Communication Data:</strong> Any information you provide when contacting our customer support team.
                 </li>
               </ul>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                3. Cookies and Local Cache Storage
+                2. How We Use Your Information
               </h2>
               <p>
-                We use cookies and local browser storage (such as <code>localStorage</code>) to enhance your shopping experience and optimize our site's loading speeds. This includes:
+                We use the information we collect to:
               </p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <strong>Persistent Cart:</strong> Storing items in your shopping cart so you don't lose them when you refresh the page.
-                </li>
-                <li>
-                  <strong>User Preferences:</strong> Storing default pincodes and delivery slots to check serviceability instantly.
-                </li>
-                <li>
-                  <strong>Authentication:</strong> Keeping you securely signed in to your account during your checkout journey.
-                </li>
-              </ul>
-              <p>
-                You can manage or decline cookie storage choices through our Cookie Consent Banner or your browser settings. Declining cookies may limit some checkout actions.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                4. How We Use Your Information
-              </h2>
-              <p>
-                We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent. Specifically, we use it to:
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Facilitate account creation, user sign-in processes, and profile settings.</li>
-                <li>Fulfill and manage your orders, payments, returns, and daily/weekly subscriptions.</li>
-                <li>Deliver fresh artisanal loaves to your door via our service network.</li>
-                <li>Send service-related transactional notices (e.g. order confirmation, delivery slots details).</li>
+                <li>Process and fulfil your orders, including delivery and payment confirmation.</li>
+                <li>Communicate with you regarding order status, delivery updates, and customer support.</li>
+                <li>Send promotional offers, new product updates, and marketing communications (where you have opted in).</li>
+                <li>Improve our Website, products, and overall customer experience.</li>
+                <li>Detect and prevent fraud, unauthorized transactions, or misuse of our Website.</li>
+                <li>Comply with applicable legal and regulatory obligations.</li>
               </ul>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                5. Data Security
+                3. Sharing of Information
               </h2>
               <p>
-                We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure. Although we will do our best to protect your personal info, transmission of personal info to and from our Website is at your own risk.
+                Bakewell does not sell your personal information to third parties. We may share your information only with:
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong>Delivery Partners</strong>, to fulfil and dispatch your orders.</li>
+                <li><strong>Payment Gateway Providers</strong>, to securely process your transactions.</li>
+                <li><strong>Service Providers</strong>, who assist us with website hosting, analytics, or marketing, and are bound by confidentiality obligations.</li>
+                <li><strong>Legal Authorities</strong>, where required by law, regulation, or a valid legal process.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                4. Data Retention
+              </h2>
+              <p>
+                We retain your personal information only for as long as necessary to fulfil the purposes outlined in this Policy, including order processing, legal compliance, dispute resolution, and enforcement of our agreements. Once no longer required, your information will be securely deleted or anonymized.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                6. Contact Us
+                5. Cookies &amp; Tracking Technologies
               </h2>
               <p>
-                If you have questions or comments about this policy, you may email us or contact us by post at:
+                Our Website uses cookies and similar tracking technologies to enhance your browsing experience, remember your preferences, and analyze site traffic. You can manage or disable cookies through your browser settings; however, doing so may affect certain features of the Website.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                6. Your Choices
+              </h2>
+              <p>
+                You have control over your personal information at any time. You may update your account details, opt out of receiving marketing communications, or request that your account be deleted. Please note that even if you opt out of marketing, we will continue to send essential order-related communications, such as order confirmations, delivery updates, and service notifications, as these are necessary to fulfil your orders.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                7. Security &amp; Access
+              </h2>
+              <p>
+                Bakewell uses reasonable technical and organizational safeguards to protect your personal information from unauthorized access, misuse, or disclosure. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.
+              </p>
+              <p>
+                You may request access to the personal information we hold about you, or ask us to correct any inaccuracies. To protect your privacy, we may need to verify your identity before processing such requests.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                8. Third-Party Links
+              </h2>
+              <p>
+                Our Website may contain links to third-party websites for your convenience. Bakewell is not responsible for the privacy practices, content, or security of any linked third-party sites, and we encourage you to review their privacy policies independently before sharing any personal information with them.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                9. Children's Privacy
+              </h2>
+              <p>
+                Our Website is not intended for use by individuals under the age of 18 without parental or guardian supervision. We do not knowingly collect personal information from minors without appropriate consent.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                10. Policy Updates
+              </h2>
+              <p>
+                We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. Any changes will be posted on this page along with a revised effective date. Your continued use of the Website after such changes constitutes your acceptance of the updated Policy.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                11. Contact Us
+              </h2>
+              <p>
+                If you have any questions about this Privacy Policy or wish to make a data-related request, please reach out to us directly:
               </p>
               <div className="bg-[#f0f2e8] p-4 rounded-xl border border-[#d4d9b8]/50 flex items-center gap-3 text-[#1a2c1a]">
                 <Mail className="text-[#3d5a2e]" size={20} />

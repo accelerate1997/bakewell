@@ -21,6 +21,7 @@ export default function SignupForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const handleRedirect = async () => {
     try {
@@ -42,6 +43,11 @@ export default function SignupForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agreeToTerms) {
+      toast.error("You must agree to the Terms & Conditions, Privacy Policy, and Refund Policy to create an account");
+      return;
+    }
+
     if (!name || !password || !confirmPassword) {
       toast.error("Please fill in all required fields");
       return;
@@ -102,6 +108,10 @@ export default function SignupForm() {
   };
 
   const handleGoogleSignup = async () => {
+    if (!agreeToTerms) {
+      toast.error("You must agree to the Terms & Conditions, Privacy Policy, and Refund Policy to create an account");
+      return;
+    }
     setLoading(true);
     try {
       const provider = new GoogleAuthProvider();
@@ -248,11 +258,52 @@ export default function SignupForm() {
             </div>
           </div>
 
+          {/* Consent Checkbox */}
+          <div className="flex items-start gap-2.5 my-3 select-none">
+            <input
+              id="agree-to-policies-signup"
+              type="checkbox"
+              checked={agreeToTerms}
+              onChange={(e) => setAgreeToTerms(e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-[#d4d9b8] text-[#3d5a2e] focus:ring-[#3d5a2e] accent-[#3d5a2e] cursor-pointer"
+            />
+            <label
+              htmlFor="agree-to-policies-signup"
+              className="text-[11px] text-[#4a4a4a] leading-tight font-medium cursor-pointer"
+            >
+              I agree to the{" "}
+              <Link
+                href="/terms-and-conditions"
+                target="_blank"
+                className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+              >
+                Terms &amp; Conditions
+              </Link>
+              ,{" "}
+              <Link
+                href="/privacy-policy"
+                target="_blank"
+                className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              , and{" "}
+              <Link
+                href="/refund-policy"
+                target="_blank"
+                className="text-[#3d5a2e] hover:text-[#1a2c1a] font-bold underline transition-colors"
+              >
+                Refund Policy
+              </Link>
+              .
+            </label>
+          </div>
+
           <div className="pt-2">
             <Button
               type="submit"
-              disabled={loading}
-              className="w-full bg-[#3d5a2e] hover:bg-[#1a2c1a] text-white py-3 rounded-xl font-bold uppercase tracking-widest text-sm shadow-md transition-all flex items-center justify-center gap-2"
+              disabled={loading || !agreeToTerms}
+              className="w-full bg-[#3d5a2e] hover:bg-[#1a2c1a] text-white py-3 rounded-xl font-bold uppercase tracking-widest text-sm shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
@@ -281,8 +332,8 @@ export default function SignupForm() {
 
         <button
           onClick={handleGoogleSignup}
-          disabled={loading}
-          className="w-full bg-white hover:bg-neutral-50 text-[#4a4a4a] py-2.5 border border-[#d4d9b8] rounded-xl font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+          disabled={loading || !agreeToTerms}
+          className="w-full bg-white hover:bg-neutral-50 text-[#4a4a4a] py-2.5 border border-[#d4d9b8] rounded-xl font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
             <path

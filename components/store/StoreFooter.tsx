@@ -32,7 +32,7 @@ const FOOTER_LINKS = {
   HELP: [
     { name: "Account", href: "/account" },
     { name: "Help & FAQs", href: "/products" },
-    { name: "Shipping & Returns", href: "/products" }
+    { name: "Refund Policy", href: "/refund-policy" }
   ]
 };
 
@@ -75,9 +75,10 @@ export function StoreFooter() {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs tracking-wider uppercase font-semibold" style={{ borderTop: '1px solid rgba(240,245,234,0.2)', color: 'rgba(240,245,234,0.5)' }}>
           <p>© 2026 The Daily Bake™. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 md:mt-0 justify-center md:justify-end">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>

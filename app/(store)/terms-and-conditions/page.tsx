@@ -40,100 +40,110 @@ export default function TermsAndConditionsPage() {
 
           <div className="space-y-8 text-sm text-[#4a4a4a] leading-relaxed">
             <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                1. Acceptance of Terms
-              </h2>
               <p>
-                By accessing or using the services provided by <strong>The Daily Bake™</strong> (referred to as "we," "us," or "our"), you agree to be bound by these Terms &amp; Conditions. If you do not agree to all of these terms, please do not access the website or use our services.
+                Welcome to <strong>Bakewell™</strong>. By accessing or using the Bakewell website (&quot;the Website&quot;), you agree to be bound by these Terms &amp; Conditions. Please read them carefully before placing an order.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                2. Account Registration and Security
+                1. Orders
               </h2>
               <p>
-                To place orders or manage subscriptions, you may be required to register for an account. You agree to:
+                All products listed on the Website are an invitation to offer, not an offer for sale. When you place an order, you are making an offer to purchase, which Bakewell may accept or decline. An order confirmation sent via email or SMS is only an acknowledgment of receipt and does not constitute acceptance. Your order is accepted only once it has been processed and dispatched.
               </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Provide accurate, current, and complete information during the registration process.</li>
-                <li>Maintain the security of your password and accept all risks of unauthorized access to your account.</li>
-                <li>Promptly notify us if you discover or suspect any security breaches related to the Website or your account.</li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                3. Products, Ordering, and Pricing
-              </h2>
               <p>
-                All products, descriptions, and prices are subject to change at any time without notice.
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <strong>Perishable Goods:</strong> Our products (breads, croissants, sourdough loaves) are freshly baked, artisanal items with no chemical preservatives. They are highly perishable and must be stored properly upon receipt.
-                </li>
-                <li>
-                  <strong>Coupons and Offers:</strong> Coupons (e.g. <code>FRESHBAKE</code>) must be applied at checkout before order placement. Offers cannot be combined unless explicitly stated.
-                </li>
-                <li>
-                  <strong>Order Rejections:</strong> We reserve the right to refuse or cancel any order for reasons including product availability, pricing errors, or suspicion of fraud.
-                </li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                4. Delivery Slots and Serviceability
-              </h2>
-              <p>
-                We deliver fresh products to selected pincodes based on local bakery routes.
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <strong>Pincode Verification:</strong> You must verify delivery serviceability for your pincode. We are not responsible for orders placed for non-serviceable locations.
-                </li>
-                <li>
-                  <strong>Delivery Slots:</strong> Customers select preferred morning or evening slots. While we aim to deliver within the specified slot, external factors (traffic, weather) may cause delays.
-                </li>
-                <li>
-                  <strong>Subscriptions:</strong> Subscriptions (daily, alternate, or weekly) are generated automatically and charged accordingly. You can pause or cancel your subscription up to 24 hours before the scheduled dispatch date.
-                </li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                5. Returns, Refunds, and Cancellations
-              </h2>
-              <p>
-                Due to the perishable nature of fresh bread, we do not accept returns on food items.
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <strong>Cancellations:</strong> Single orders can be cancelled before they enter the baking phase. Once baking has begun, cancellations are not permitted.
-                </li>
-                <li>
-                  <strong>Damaged or Incorrect Items:</strong> If you receive an incorrect product or the packaging is damaged, please contact our support team within 4 hours of delivery along with photographic proof for a replacement or store credit.
-                </li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                6. Limitation of Liability
-              </h2>
-              <p>
-                In no event shall The Daily Bake, its directors, employees, or suppliers be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your access to or use of the services, products, or website.
+                Bakewell reserves the right to cancel any order in cases of product unavailability, payment discrepancies, pricing errors, or suspected fraudulent activity. In such cases, any amount paid will be refunded in accordance with our Refund Policy.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
-                7. Contact Information
+                2. Eligibility
               </h2>
               <p>
-                If you have any questions or require clarification regarding these Terms &amp; Conditions, please reach out to us:
+                By using this Website, you confirm that you are legally capable of entering into a binding contract under Indian law. Users under the age of 18 may use the Website only with the involvement and supervision of a parent or legal guardian. If you are registering on behalf of a business, you confirm that you have the authority to bind that organization to these Terms. At present, Bakewell delivers only within India.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                3. Account &amp; Registration
+              </h2>
+              <p>
+                You agree to provide accurate, current, and complete information when creating an account, and to keep your login credentials confidential. You are responsible for all activity that occurs under your account and must notify us immediately of any unauthorized use. Bakewell reserves the right to suspend or terminate any account found to contain false or misleading information, or that violates these Terms.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                4. Customer Responsibilities
+              </h2>
+              <p>
+                By using this Website, you agree to use it only for lawful purposes, provide accurate and complete delivery information, ensure someone is available to receive perishable items at the specified time, and refrain from any activity that misuses, disrupts, or interferes with the Website's functioning.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                5. Product Information
+              </h2>
+              <p>
+                Product images are for illustrative purposes only. As our breads and bakery items are handcrafted, slight variations in appearance, size, or finish from the images shown may occur. Prices and product availability are subject to change without prior notice.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                6. Payments
+              </h2>
+              <p>
+                Bakewell reserves the right to refuse or cancel any order where payment cannot be verified, where a pricing error has occurred, where the product is no longer available, or where fraudulent activity is suspected.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                7. Delivery
+              </h2>
+              <p>
+                We make every effort to deliver orders within the selected timeframe. However, Bakewell shall not be held liable for delays caused by factors beyond our reasonable control, including but not limited to adverse weather, traffic conditions, public holidays, or delivery details incorrectly provided by the customer.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                8. Intellectual Property
+              </h2>
+              <p>
+                All content on this Website &mdash; including logos, product images, text, and design elements &mdash; is the property of Bakewell and is protected under applicable intellectual property laws. No content may be copied, reproduced, or used without our prior written permission.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                9. Limitation of Liability
+              </h2>
+              <p>
+                Bakewell shall not be liable for any indirect, incidental, or consequential damages arising from the use of this Website or our products. Our maximum liability in any circumstance shall not exceed the total value of the relevant order.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                10. Changes to These Terms
+              </h2>
+              <p>
+                Bakewell reserves the right to update or modify these Terms &amp; Conditions at any time without prior notice. Continued use of the Website following any changes constitutes your acceptance of the revised Terms.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-playfair font-black text-xl text-[#1a2c1a] uppercase tracking-tight">
+                11. Contact Us
+              </h2>
+              <p>
+                If you have any questions or concerns regarding these Terms &amp; Conditions, please reach out to us directly:
               </p>
               <div className="bg-[#f0f2e8] p-4 rounded-xl border border-[#d4d9b8]/50 flex items-center gap-3 text-[#1a2c1a]">
                 <Mail className="text-[#3d5a2e]" size={20} />
