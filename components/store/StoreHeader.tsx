@@ -130,9 +130,9 @@ export function StoreHeader() {
           </div>
 
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0 hidden lg:flex items-center">
             <Link href="/" className="flex items-center">
-              <img src="/logo.svg" alt="Bakewell Logo" className="h-10 w-auto object-contain" />
+              <img src="/logo.svg" alt="Bakewell Logo" className="h-12 md:h-14 w-auto object-contain transition-all" />
             </Link>
           </div>
 

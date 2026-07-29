@@ -192,3 +192,21 @@
   animation: errorPulseFloat 6s ease-in-out infinite;
   will-change: transform, filter;
 }
+
+/* ── Smooth Logo Float Bounce Animation ───────────────── */
+
+@keyframes logoSmoothBounce {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+  }
+  50% {
+    transform: translateY(-10px);
+    filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.14));
+  }
+}
+
+.animate-logo-bounce {
+  animation: logoSmoothBounce 3s ease-in-out infinite;
+  will-change: transform, filter;
+}

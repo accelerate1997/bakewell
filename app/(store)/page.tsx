@@ -81,10 +81,17 @@ export default async function StoreHomePage() {
   return (
     <div className="font-sans overflow-x-clip" style={{ backgroundColor: '#F0F5EA', color: '#231F14' }}>
       {/* Hero Section */}
-      <section className="relative pt-12 pb-0 lg:pt-0 lg:pb-0" style={{ backgroundColor: '#F0F5EA' }}>
+      <section className="relative pt-3 pb-0 lg:pt-0 lg:pb-0" style={{ backgroundColor: '#F0F5EA' }}>
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-            <div className="lg:w-[45%] lg:pr-8 text-center lg:text-left z-10 py-8 lg:py-12">
+            <div className="lg:w-[45%] lg:pr-8 text-center lg:text-left z-10 pt-1 pb-6 lg:py-12">
+              <div className="mb-3 sm:mb-6 flex justify-center lg:justify-start">
+                <img
+                  src="/logo.svg"
+                  alt="Bakewell Logo"
+                  className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain animate-logo-bounce"
+                />
+              </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.9]" style={{ color: '#3A4A2E' }}>
                 {heroBanner.title.includes("Making Health") ? (
                   <>Making<br />Health Your<br />Everyday Staple</>
