@@ -50,7 +50,7 @@ export default async function BlogPage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header Hero */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <Badge text="The Daily Bake Blog" />
+          <Badge text="Bakewell Blog" />
           <h1 className="font-playfair font-black text-4xl sm:text-5xl lg:text-6xl text-[#1a2c1a] leading-tight">
             From Our Oven to Your Feed
           </h1>
@@ -179,7 +179,7 @@ function FeaturedPostCard({ post }: { post: any }) {
           <div className="flex items-center gap-4 text-xs text-[#8a8a7a] font-bold uppercase tracking-wider">
             <span className="flex items-center gap-1.5">
               <User size={14} className="text-[#3d5a2e]" />
-              {post.author.name || "Daily Bake"}
+              {post.author.name || "Bakewell"}
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar size={14} className="text-[#c8872a]" />
@@ -240,7 +240,7 @@ function BlogPostCard({ post }: { post: any }) {
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <User size={12} className="text-[#3d5a2e]" />
-              {post.author.name || "Daily Bake"}
+              {post.author.name || "Bakewell"}
             </span>
             <span className="flex items-center gap-1">
               <Calendar size={12} className="text-[#c8872a]" />

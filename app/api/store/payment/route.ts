@@ -218,7 +218,7 @@ export async function POST(request: Request) {
               period,
               interval,
               item: {
-                name: `Daily Bake Subscription - ${frequency} (Billed Weekly)`,
+                name: `Bakewell Subscription - ${frequency} (Billed Weekly)`,
                 amount: Math.round(billingAmount * 100), // amount in paise
                 currency: "INR",
               },

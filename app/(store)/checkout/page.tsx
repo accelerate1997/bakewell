@@ -520,7 +520,7 @@ export default function CheckoutPage() {
           const options = {
             key: data.keyId,
             subscription_id: data.razorpaySubscriptionId,
-            name: "The Daily Bake",
+            name: "Bakewell",
             description: "Subscription Payment",
             handler: async function (response: any) {
               await handleVerifySubscriptionPayment(
@@ -643,7 +643,7 @@ export default function CheckoutPage() {
             key: data.keyId,
             amount: data.amount,
             currency: data.currency,
-            name: "The Daily Bake",
+            name: "Bakewell",
             description: "Checkout Payment",
             order_id: data.razorpayOrderId,
             handler: async function (response: any) {
@@ -1210,7 +1210,7 @@ export default function CheckoutPage() {
             <p className="text-[10px] text-center text-[#8a8a7a] mt-3 uppercase tracking-wider">
               {isSubscriptionCheckout 
                 ? "By creating this subscription, recurring delivery invoices will be auto-generated." 
-                : "By placing your order, you agree to The Daily Bake™ terms of service, privacy policy, and refund policy."}
+                : "By placing your order, you agree to Bakewell™ terms of service, privacy policy, and refund policy."}
             </p>
           </div>
         </div>

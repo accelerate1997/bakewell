@@ -152,7 +152,7 @@ export default function SignupForm() {
             Create Account
           </h2>
           <p className="text-xs font-bold uppercase tracking-wider text-[#8a8a7a]">
-            Join The Daily Bake selection
+            Join Bakewell™ selection
           </p>
         </div>
 

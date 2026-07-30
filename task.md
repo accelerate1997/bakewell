@@ -12,8 +12,13 @@
   - [x] Update JWT and Session callbacks to store roles, phone, and user ID
 - [x] Implement Storefront Sign-up & Sign-in Pages
   - [x] Create Sign-up API endpoint `app/api/auth/signup/route.ts` (with first-user ADMIN auto-promotion)
-  - [x] Create Sign-up UI page `app/(store)/signup/page.tsx`
-  - [x] Create Sign-in UI page `app/(store)/login/page.tsx`
+  - [/] Create Return and Refund Policy page (`app/(store)/refund-policy/page.tsx`)
+- [ ] Update Terms & Conditions page (`app/(store)/terms-and-conditions/page.tsx`)
+- [ ] Update Privacy Policy page (`app/(store)/privacy-policy/page.tsx`)
+- [ ] Update Store Footer links (`components/store/StoreFooter.tsx`)
+- [ ] Add policy consent checkbox to Checkout page (`app/(store)/checkout/page.tsx`)
+- [ ] Add policy consent checkbox to Signup form (`components/store/SignupForm.tsx`)
+- [ ] Verify everything compiles successfully with no TypeScript errors
 - [x] Implement Middleware Protection
   - [x] Create root `middleware.ts` to protect `/admin/*` and `/checkout`
 - `[x]` Refactor Checkout & Payment APIs

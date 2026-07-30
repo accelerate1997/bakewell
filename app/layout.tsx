@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/components/store/SessionProvider";
 
 export const metadata: Metadata = {
-  title: "The Daily Bake | Admin Panel",
+  title: "Bakewell | Admin Panel",
   description: "B2C bakery and FMCG e-commerce admin dashboard",
 };
 

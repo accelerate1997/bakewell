@@ -62,7 +62,7 @@ async function main() {
         "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=1000&auto=format&fit=crop"
       ],
       nutritionTags: ["No Maida", "Vegan", "High Protein", "Fresh Baked"],
-      metaTitle: "Classic Country Sourdough | The Daily Bake™",
+      metaTitle: "Classic Country Sourdough | Bakewell™",
       metaDescription: "Freshly baked authentic country sourdough bread with zero preservatives.",
       variants: {
         create: [
@@ -84,7 +84,7 @@ async function main() {
         "/hero-image-v3.png"
       ],
       nutritionTags: ["No Maida", "Vegan", "High Protein", "Fresh Baked"],
-      metaTitle: "Multigrain Seeded Sourdough | The Daily Bake™",
+      metaTitle: "Multigrain Seeded Sourdough | Bakewell™",
       variants: {
         create: [
           { label: "450g Loaf", price: 260, stock: 20, sku: "SD-MG-450" },
@@ -105,7 +105,7 @@ async function main() {
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop"
       ],
       nutritionTags: ["Fresh Baked", "No Preservatives"],
-      metaTitle: "Belgian Dark Truffle Cake | The Daily Bake™",
+      metaTitle: "Belgian Dark Truffle Cake | Bakewell™",
       variants: {
         create: [
           { label: "500g (Half Kg)", price: 750, stock: 10, sku: "CK-TR-500" },
@@ -126,7 +126,7 @@ async function main() {
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1000&auto=format&fit=crop"
       ],
       nutritionTags: ["Fresh Baked", "No Preservatives"],
-      metaTitle: "French Butter Croissants | The Daily Bake™",
+      metaTitle: "French Butter Croissants | Bakewell™",
       variants: {
         create: [
           { label: "Box of 4", price: 360, stock: 18, sku: "PS-CR-004" },
@@ -147,7 +147,7 @@ async function main() {
         "https://images.unsplash.com/photo-1587049352847-4a4224e1451f?q=80&w=1000&auto=format&fit=crop"
       ],
       nutritionTags: ["Sugar Free", "No Preservatives", "Vegan"],
-      metaTitle: "Raw Wildflower Honey | The Daily Bake™",
+      metaTitle: "Raw Wildflower Honey | Bakewell™",
       variants: {
         create: [
           { label: "250g Glass Jar", price: 290, stock: 30, sku: "FM-HN-250" },
@@ -169,7 +169,7 @@ async function main() {
         "https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=1000&auto=format&fit=crop"
       ],
       nutritionTags: ["High Protein", "No Preservatives"],
-      metaTitle: "Almond Cranberry Biscotti | The Daily Bake™",
+      metaTitle: "Almond Cranberry Biscotti | Bakewell™",
       variants: {
         create: [
           { label: "200g Pack", price: 240, stock: 25, sku: "SN-BS-200" },

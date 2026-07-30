@@ -55,7 +55,7 @@ export function CookieConsent() {
 
         {/* Body Text */}
         <p className="text-xs text-[#4a4a4a] leading-relaxed">
-          We use cookies and cache storage to make your experience at The Daily Bake even sweeter. This helps us remember your shopping cart items, save your pincode, and speed up loading times.
+          We use cookies and cache storage to make your experience at Bakewell even sweeter. This helps us remember your shopping cart items, save your pincode, and speed up loading times.
         </p>
 
         {/* Actions */}

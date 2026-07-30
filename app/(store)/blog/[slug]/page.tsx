@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
   if (!post) {
     return {
-      title: "Article Not Found - The Daily Bake",
+      title: "Article Not Found - Bakewell",
     };
   }
 
   return {
-    title: `${post.metaTitle || post.title} - The Daily Bake`,
-    description: post.metaDescription || post.excerpt || "Read our latest article on The Daily Bake blog.",
+    title: `${post.metaTitle || post.title} - Bakewell`,
+    description: post.metaDescription || post.excerpt || "Read our latest article on the Bakewell blog.",
   };
 }
 
@@ -95,7 +95,7 @@ export default async function BlogPostReaderPage({ params }: BlogPostPageProps) 
     "author": [
       {
         "@type": "Person",
-        "name": post.author.name || "The Daily Bake Team",
+        "name": post.author.name || "The Bakewell Team",
       },
     ],
     "description": post.excerpt || post.title,
@@ -146,7 +146,7 @@ export default async function BlogPostReaderPage({ params }: BlogPostPageProps) 
                   <span>{post.author.name ? post.author.name.slice(0, 2) : "DB"}</span>
                 )}
               </div>
-              <span>By {post.author.name || "Daily Bake Team"}</span>
+              <span>By {post.author.name || "Bakewell Team"}</span>
             </div>
 
             <div className="flex items-center gap-1.5">
@@ -212,7 +212,7 @@ export default async function BlogPostReaderPage({ params }: BlogPostPageProps) 
               </div>
               <div className="space-y-1">
                 <h4 className="font-bold text-sm text-[#1a2c1a] uppercase tracking-wider">
-                  {post.author.name || "The Daily Bake Team"}
+                  {post.author.name || "The Bakewell Team"}
                 </h4>
                 <p className="text-[10px] text-[#c8872a] font-extrabold uppercase tracking-widest">
                   {post.author.role || "ADMINISTRATOR"}

@@ -8,7 +8,7 @@ import { WishlistProvider } from "@/lib/store/WishlistContext";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Daily Bake™ | Fresh Artisanal Bakery & FMCG Essentials",
+  title: "Bakewell™ | Fresh Artisanal Bakery & FMCG Essentials",
   description: "Artisanal sourdoughs, decadent pastries, and premium FMCG essentials baked fresh every morning with zero preservatives.",
 };
 

@@ -188,7 +188,7 @@ export default function BlogPostsAdminPage() {
                           {post.title}
                         </h4>
                         <div className="flex items-center gap-2 text-[10px] text-[#8a8a7a] font-bold uppercase">
-                          <span>By {post.author.name || "Daily Bake Team"}</span>
+                          <span>By {post.author.name || "Bakewell Team"}</span>
                           <span>•</span>
                           <span className="font-mono">/{post.slug}</span>
                         </div>

@@ -4,8 +4,8 @@ import { ShieldCheck, Mail, ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - The Daily Bake",
-  description: "Learn how The Daily Bake collects, uses, and safeguards your personal data, browser cache, and cookie choices.",
+  title: "Privacy Policy - Bakewell",
+  description: "Learn how Bakewell collects, uses, and safeguards your personal data, browser cache, and cookie choices.",
 };
 
 export default function PrivacyPolicyPage() {

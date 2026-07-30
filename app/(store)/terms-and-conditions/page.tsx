@@ -4,8 +4,8 @@ import { FileText, Mail, ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions - The Daily Bake",
-  description: "Read the Terms & Conditions for ordering, subscribing, and using services from The Daily Bake.",
+  title: "Terms & Conditions - Bakewell",
+  description: "Read the Terms & Conditions for ordering, subscribing, and using services from Bakewell.",
 };
 
 export default function TermsAndConditionsPage() {

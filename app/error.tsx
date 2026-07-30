@@ -31,7 +31,7 @@ export default function ErrorBoundary({
         <div className="relative w-full max-w-xl aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#2d4f3b] group animate-error-pulse-float hover:scale-[1.03] active:scale-[0.99] transition-all duration-500">
           <Image
             src="/bakewell505.svg"
-            alt="The Daily Bake Error 505 - Server Error"
+            alt="Bakewell Error 505 - Server Error"
             fill
             className="object-cover"
             priority

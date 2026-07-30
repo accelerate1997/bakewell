@@ -252,7 +252,7 @@ export default async function StoreHomePage() {
                       <div className="flex items-center gap-3">
                         <span className="flex items-center gap-1">
                           <User size={12} className="text-[#3d5a2e]" />
-                          {post.author?.name || "Daily Bake"}
+                          {post.author?.name || "Bakewell"}
                         </span>
                         <span className="flex items-center gap-1">
                           <Calendar size={12} className="text-[#c8872a]" />

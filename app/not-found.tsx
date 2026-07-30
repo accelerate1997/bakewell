@@ -15,7 +15,7 @@ export default function NotFound() {
         <div className="relative w-full max-w-xl aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#2d4f3b] group animate-chef-sway-float hover:scale-[1.03] active:scale-[0.99] transition-all duration-500">
           <Image
             src="/bakewell404.svg"
-            alt="The Daily Bake Error 404 - Sad little chefs holding a wooden sign"
+            alt="Bakewell Error 404 - Sad little chefs holding a wooden sign"
             fill
             className="object-cover"
             priority

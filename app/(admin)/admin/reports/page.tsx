@@ -338,7 +338,7 @@ export default function AdminReportsPage() {
 
       {/* Print Specific Header */}
       <div className="hidden print:block border-b-2 border-black pb-4 mb-4">
-        <h1 className="text-xl font-bold uppercase tracking-wider text-black">THE DAILY BAKE™ - FINANCIAL REPORT</h1>
+        <h1 className="text-xl font-bold uppercase tracking-wider text-black">BAKEWELL™ - FINANCIAL REPORT</h1>
         <p className="text-xs font-medium">
           Period: <span className="font-bold">{new Date(startDate).toLocaleDateString("en-IN")}</span> to <span className="font-bold">{new Date(endDate).toLocaleDateString("en-IN")}</span>
         </p>

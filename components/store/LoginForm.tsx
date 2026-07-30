@@ -261,7 +261,7 @@ export default function LoginForm() {
             Sign In
           </h2>
           <p className="text-xs font-bold uppercase tracking-wider text-[#8a8a7a]">
-            Access your Daily Bake account
+            Access your Bakewell account
           </p>
         </div>
 

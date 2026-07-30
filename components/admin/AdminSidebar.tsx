@@ -64,7 +64,7 @@ export function AdminSidebar({ className }: { className?: string }) {
     <div className={cn("w-full md:w-[240px] h-screen bg-[#1a2c1a] text-white flex flex-col z-50", className)}>
       <div className="p-6">
         <h1 className={cn(playfair.className, "text-xl font-black text-white")}>
-          THE DAILY BAKE™
+          BAKEWELL™
         </h1>
         <p className="text-[10px] uppercase tracking-widest text-[#4d7a3e] font-bold mt-1">
           Admin Panel

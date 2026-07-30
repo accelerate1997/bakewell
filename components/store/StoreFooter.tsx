@@ -53,7 +53,7 @@ export function StoreFooter() {
               <img src="/logo-white.svg" alt="Bakewell Logo" className="h-16 md:h-20 w-auto object-contain mb-3" />
             </Link>
             <p className="text-sm max-w-xs leading-relaxed" style={{ color: 'rgba(240,245,234,0.7)' }}>
-              Love The Daily Bake breads? Get healthy, hustle-friendly recipes straight to your inbox.
+              Love Bakewell breads? Get healthy, hustle-friendly recipes straight to your inbox.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export function StoreFooter() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs tracking-wider uppercase font-semibold" style={{ borderTop: '1px solid rgba(240,245,234,0.2)', color: 'rgba(240,245,234,0.5)' }}>
-          <p>© 2026 The Daily Bake™. All rights reserved.</p>
+          <p>© 2026 Bakewell™. All rights reserved.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 md:mt-0 justify-center md:justify-end">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>

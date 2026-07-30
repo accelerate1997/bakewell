@@ -6,8 +6,8 @@ import { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Bulk Purchase Enquiry | The Daily Bake",
-  description: "Request wholesale pricing, custom recipe formulations, or corporate bulk enquiries for fresh-baked organic breads and pastries from The Daily Bake.",
+  title: "Bulk Purchase Enquiry | Bakewell",
+  description: "Request wholesale pricing, custom recipe formulations, or corporate bulk enquiries for fresh-baked organic breads and pastries from Bakewell.",
 };
 
 export default async function BulkEnquiryPage() {

@@ -4,8 +4,8 @@ import { Undo2, Mail, ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Return & Refund Policy - The Daily Bake",
-  description: "Read the Return and Refund Policy of The Daily Bake to understand order availability, damaged products, cancellations, and refunds.",
+  title: "Return & Refund Policy - Bakewell",
+  description: "Read the Return and Refund Policy of Bakewell to understand order availability, damaged products, cancellations, and refunds.",
 };
 
 export default function RefundPolicyPage() {
@@ -41,7 +41,7 @@ export default function RefundPolicyPage() {
           <div className="space-y-8 text-sm text-[#4a4a4a] leading-relaxed">
             <section className="space-y-3">
               <p>
-                At <strong>Bakewell™</strong> (The Daily Bake), customer satisfaction is our priority. We strive to provide freshly prepared, high-quality baked goods and excellent service. If you experience any issue with your order, please contact us as soon as possible so we can assist you.
+                At <strong>Bakewell™</strong>, customer satisfaction is our priority. We strive to provide freshly prepared, high-quality baked goods and excellent service. If you experience any issue with your order, please contact us as soon as possible so we can assist you.
               </p>
               <p>
                 Refunds are considered only under the following circumstances:

@@ -21,8 +21,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${product.metaTitle || product.name} | The Daily Bake™`,
-    description: product.metaDescription || product.description || "Freshly baked artisanal product from The Daily Bake.",
+    title: `${product.metaTitle || product.name} | Bakewell™`,
+    description: product.metaDescription || product.description || "Freshly baked artisanal product from Bakewell.",
   };
 }
 
@@ -86,7 +86,7 @@ export default async function ProductPage({
     "@type": "Product",
     "name": product.name,
     "image": product.images,
-    "description": product.description || product.metaDescription || "Freshly baked product from The Daily Bake.",
+    "description": product.description || product.metaDescription || "Freshly baked product from Bakewell.",
     "category": product.category.name,
     "offers": {
       "@type": "AggregateOffer",
