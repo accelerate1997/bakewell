@@ -5,8 +5,20 @@ import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/components/store/SessionProvider";
 
 export const metadata: Metadata = {
-  title: "Bakewell | Admin Panel",
-  description: "B2C bakery and FMCG e-commerce admin dashboard",
+  metadataBase: new URL("https://bakewellbreads.com"),
+  title: {
+    default: "Bakewell | Fresh Artisanal Breads & Bakery",
+    template: "%s | Bakewell",
+  },
+  description: "No Maida. No compromise. Fresh artisanal breads and clean label bakery products delivered daily.",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://bakewellbreads.com",
+    siteName: "Bakewell",
+    title: "Bakewell | Fresh Artisanal Breads & Bakery",
+    description: "No Maida. No compromise. Fresh artisanal breads and clean label bakery products delivered daily.",
+  },
 };
 
 export default function RootLayout({

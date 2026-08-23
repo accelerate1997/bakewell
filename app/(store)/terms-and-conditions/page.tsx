@@ -149,7 +149,7 @@ export default function TermsAndConditionsPage() {
                 <Mail className="text-[#3d5a2e]" size={20} />
                 <div>
                   <p className="font-bold text-xs uppercase tracking-wider">Email Support</p>
-                  <p className="font-black text-[#3d5a2e]">info@thedailybake.com</p>
+                  <p className="font-black text-[#3d5a2e]">info@bakewellbreads.com</p>
                 </div>
               </div>
             </section>

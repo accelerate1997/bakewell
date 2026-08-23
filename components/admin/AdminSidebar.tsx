@@ -101,7 +101,7 @@ export function AdminSidebar({ className }: { className?: string }) {
           </div>
           <div className="flex flex-col max-w-[120px]">
             <span className="text-xs font-bold truncate text-white">{user?.name || 'Admin User'}</span>
-            <span className="text-[10px] text-white/50 truncate">{user?.email || user?.phone || 'admin@dailybake.com'}</span>
+            <span className="text-[10px] text-white/50 truncate">{user?.email || user?.phone || 'admin@bakewellbreads.com'}</span>
           </div>
         </div>
         <button 

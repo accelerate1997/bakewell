@@ -18,7 +18,7 @@ export async function verifyFirebaseToken(token: string): Promise<DecodedFirebas
     const isAdmin = token === "mock-admin";
     return {
       uid: isAdmin ? "mock-admin-uid" : "mock-customer-uid",
-      email: isAdmin ? "admin@bakewell.com" : "customer@bakewell.com",
+      email: isAdmin ? "admin@bakewellbreads.com" : "customer@bakewellbreads.com",
       name: isAdmin ? "Mock Admin" : "Mock Customer",
     };
   }
