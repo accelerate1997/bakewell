@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+import { sendOrderConfirmationWhatsApp } from "@/lib/whatsapp";
 
 export async function POST(request: Request) {
   try {
@@ -326,6 +327,11 @@ export async function POST(request: Request) {
         console.warn(`Could not decrement stock for variant ${item.variantId}`, stockErr);
       }
     }
+
+    // Trigger WhatsApp notification asynchronously (non-blocking)
+    sendOrderConfirmationWhatsApp(order.id).catch((waErr) =>
+      console.error("[WhatsApp Trigger Error on Payment Verify]:", waErr)
+    );
 
     return NextResponse.json({ success: true, orderId: order.id });
   } catch (error) {
